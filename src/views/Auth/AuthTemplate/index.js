@@ -4,10 +4,10 @@ import Label from "../../../components/Label";
 
 function AuthTemplate(props) {
     return (
-      <section className="text-gray-600 body-font lg:w-9/12">
+      <section className="text-gray-600 body-font lg:w-9/12 z-10">
         <div className="container w-10/12 px-5 py-24 mx-auto flex flex-wrap items-center">
           <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
-            <h1 className="title-font font-medium text-3xl text-gray-900">
+            <h1 className="title-font font-medium text-5xl text-white">
               Welcome to PayUP
             </h1>
             <p className="leading-relaxed mt-4">
@@ -19,8 +19,8 @@ function AuthTemplate(props) {
               {props.formtitle}
             </h2>
            {props.children}
-            <p className="text-xs text-gray-500 mt-3">
-              Literally you probably haven't heard of them jean shorts.
+            <p className="text-xs text-center text-gray-500 mt-3">
+              {props.formSubtitle}
             </p>
           </div>
         </div>
