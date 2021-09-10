@@ -7,10 +7,10 @@ function AuthTemplate(props) {
       <section className="text-gray-600 body-font lg:w-9/12 z-10">
         <div className="container w-10/12 px-5 py-24 mx-auto flex flex-wrap items-center">
           <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
-            <h1 className="title-font font-medium text-5xl text-white">
-              Welcome to PayUP
+            <h1 className="title-font font-bold text-5xl text-white">
+              Welcome to pay<span className="text-pink-600">UP</span>
             </h1>
-            <p className="leading-relaxed mt-4">
+            <p className="leading-relaxed mt-4 text-gray-600 text-2xl">
               {props.subtitle}
             </p>
           </div>
@@ -18,6 +18,7 @@ function AuthTemplate(props) {
             <h2 className="text-gray-900 text-lg font-medium title-font mb-5">
               {props.formtitle}
             </h2>
+            
            {props.children}
             <p className="text-xs text-center text-gray-500 mt-3">
               {props.formSubtitle}

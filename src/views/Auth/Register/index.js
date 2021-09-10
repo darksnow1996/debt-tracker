@@ -1,7 +1,7 @@
 import AuthTemplate from "../AuthTemplate";
 import Label from "../../../components/Label";
 import Input from "../../../components/Input";
-import Button from "../../../components/Button";
+import Button, { ButtonLink } from "../../../components/Button";
 import { Link } from "react-router-dom";
 
 const Register = (props) => {
@@ -14,14 +14,22 @@ const Register = (props) => {
         formSubtitle = {<div>Have an account?...<Link to="/login" className="text-pink-500">Log In</Link></div>}
         >
            <div className="relative mb-4">
-                <Label title="Full Name"></Label>
+                <Label title="Full name"></Label>
                 <Input type="text" name="full-name"></Input>
               </div>
               <div className="relative mb-4">
                 <Label title="Email"></Label>
                 <Input type="email" name="email"></Input>
               </div>
-              <Button title="sign up"></Button>
+              <div className="relative mb-4">
+                <Label title="Password"></Label>
+                <Input type="password" name="password"></Input>
+              </div>
+              <div className="relative mb-4">
+                <Label title="Confirm password"></Label>
+                <Input type="password" name="cpassword"></Input>
+              </div>
+              <ButtonLink to="/login"  title="sign up"></ButtonLink>
         </AuthTemplate>
       </div>
       </div>
