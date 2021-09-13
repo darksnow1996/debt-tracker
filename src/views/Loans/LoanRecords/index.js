@@ -5,6 +5,7 @@ import { Button, ButtonLink } from "../../../components/Button"
 import Modal from "../../../components/Modal"
 import { useState } from "react"
 import Input from "../../../components/Input"
+import Label from "../../../components/Label"
 
 
 
@@ -13,10 +14,10 @@ const getData = () => {
       {
         name: 'Jane Cooper',
         email: 'jane.cooper@example.com',
-        title: 'Regional Paradigm Technician',
+        amount: '$500.90',
         department: 'Optimization',
         tel: "+12738393033933839",
-        status: 'Active',
+        status: 'Paid',
         role: 'Admin',
         age: 27,
         imgUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
@@ -24,10 +25,10 @@ const getData = () => {
       {
         name: 'Cody Fisher',
         email: 'cody.fisher@example.com',
-        title: 'Product Directives Officer',
+        amount: '$310',
         department: 'Intranet',
         tel: "+12738393033933839",
-        status: 'Inactive',
+        status: 'Partly Paid',
         role: 'Owner',
         age: 43,
         imgUrl: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
@@ -35,10 +36,10 @@ const getData = () => {
       {
         name: 'Esther Howard',
         email: 'esther.howard@example.com',
-        title: 'Forward Response Developer',
+        amount: '$204',
         tel: "+12738393033933839",
         department: 'Directives',
-        status: 'Active',
+        status: 'Paid',
         role: 'Member',
         age: 32,
         imgUrl: 'https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
@@ -46,10 +47,10 @@ const getData = () => {
       {
         name: 'Jenny Wilson',
         email: 'jenny.wilson@example.com',
-        title: 'Central Security Manager',
+        amount: '$350',
         tel: "+12738393033933839",
         department: 'Program',
-        status: 'Offline',
+        status: 'Unpaid',
         role: 'Member',
         age: 29,
         imgUrl: 'https://images.unsplash.com/photo-1498551172505-8ee7ad69f235?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
@@ -57,10 +58,10 @@ const getData = () => {
       {
         name: 'Kristin Watson',
         email: 'kristin.watson@example.com',
-        title: 'Lean Implementation Liaison',
+        amount: '$50',
         tel: "+12738393033933839",
         department: 'Mobility',
-        status: 'Inactive',
+        status: 'Unpaid',
         role: 'Admin',
         age: 36,
         imgUrl: 'https://images.unsplash.com/photo-1532417344469-368f9ae6d187?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
@@ -71,7 +72,7 @@ const getData = () => {
         title: 'Internal Applications Engineer',
         tel: "+12738393033933839",
         department: 'Security',
-        status: 'Active',
+        status: 'Paid',
         role: 'Member',
         age: 24,
         imgUrl: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
@@ -92,23 +93,20 @@ const LoanRecords = (props) => {
           emailAccessor: "email",
         },
         {
-          Header: "Email",
-          accessor: 'email',
+          Header: "Amount",
+          accessor: 'amount',
         },
         {
-          Header: "Tel",
-          accessor: 'tel',
+          Header: "Status",
+          accessor: 'status',
+          Cell: StatusPill
          
         },
         
         {
             Header: "Action",
            
-            Cell : ({ value }) =>(
-            <ButtonLink
-                title="Edit"
-               
-            />) 
+            
            
           },
       ], [])
@@ -121,19 +119,22 @@ const LoanRecords = (props) => {
     return (
       
         <DashBoard>
-        <Modal title="Add Loanee" showModal={showModal} setShowModal={setShowModal}>
+        <Modal title="Add Loan" showModal={showModal} setShowModal={setShowModal}>
             <form className="grid grid-cols-4 gap-4">
                 <div className="col-span-4">
+                <Label title="Choose Loanee"/>
                 <Input type="text" placeholder="Enter Loanee Name"/>
                 </div>
                 <div className="col-span-4">
-                <Input type="email" placeholder="Email address"/>
+                <Label title="Loan amount"/>
+                <Input type="email" placeholder=""/>
 
                 </div>
                 <div className="col-span-4">
-                <Input type="text" placeholder="Mobile"/>
+                <Label title="Loan period"/>
+                <Input type="text" placeholder=""/>
 
-            </div>
+                </div>
                 <div className="col-start-4">
                     <Button title="Save" type="submit"/>
                 </div>
@@ -142,11 +143,11 @@ const LoanRecords = (props) => {
             
             <section class="my-auto mt-10 p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
             <div className="w-full flex flex-row justify-between">
-            <h5 class="text-gray-900 text-2xl font-bold mt-0 mb-0">Loanees</h5>
-            <div className="w-1/12">
+            <h5 class="text-gray-900 text-2xl font-bold mt-0 mb-0">Loans</h5>
+            <div className=" max-w-md">
             <Button onClick={()=> {
                 setShowModal(true)
-            }} title="Create" ></Button>
+            }} title="Add Loan" ></Button>
             </div>
             </div>
             

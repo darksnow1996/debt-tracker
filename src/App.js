@@ -8,6 +8,7 @@ import DashboardPage from './views/DashboardPage';
 import LoanRecords from './views/Loanees/LoanRecords';
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
 import Loanees from './views/Loanees';
+import Loans from './views/Loans';
 
 function App() {
 
@@ -29,6 +30,9 @@ function App() {
      </Route>
      <Route path="/loanees">
      <Loanees/>
+     </Route>
+     <Route path="/loans">
+    <Loans/>
      </Route>
    </Switch>
  </BrowserRouter>
