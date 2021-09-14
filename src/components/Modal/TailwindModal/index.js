@@ -27,17 +27,17 @@ function Modal(_ref) {
   }
 
   return /*#__PURE__*/_react["default"].createElement(_react["default"].Fragment, null, /*#__PURE__*/_react["default"].createElement("div", {
-    className: "".concat(active ? 'grid pointer-events-auto' : 'hidden pointer-events-none', " place-items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none transition-all duration-500"),
+    className: "".concat(active ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none', " grid place-items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none transition-all duration-500"),
     onClick: toggler
   }, /*#__PURE__*/_react["default"].createElement("div", {
-    className: "transform ".concat(active ? ' translate-y-0' : 'hidden -translate-y-10', " w-auto my-6 mx-auto ").concat(modalSize, " transition-all duration-500")
+    className: "transform ".concat(active ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-10', " w-auto my-6 mx-auto ").concat(modalSize, " transition-all duration-500")
   }, /*#__PURE__*/_react["default"].createElement("div", {
     className: "border-0 p-6 ".concat(size === 'lg' ? 'rounded-xl shadow-xl' : 'rounded-lg shadow-lg', " flex flex-col w-full bg-white outline-none focus:outline-none"),
     onClick: function onClick(e) {
       return e.stopPropagation();
     }
   }, children))), /*#__PURE__*/_react["default"].createElement("div", {
-    className: "".concat(active ? 'opacity-25 pointer-events-auto' : 'hidden pointer-events-none', " fixed inset-0 z-40 bg-black transition-all duration-500")
+    className: "".concat(active ? 'opacity-25 pointer-events-auto' : 'opacity-0 pointer-events-none', " fixed inset-0 z-40 bg-black transition-all duration-500")
   }));
 }
 
