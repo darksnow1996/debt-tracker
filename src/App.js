@@ -9,6 +9,7 @@ import LoanRecords from './views/Loanees/LoanRecords';
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
 import Loanees from './views/Loanees';
 import Loans from './views/Loans';
+import "@material-tailwind/react/tailwind.css";
 
 function App() {
 
