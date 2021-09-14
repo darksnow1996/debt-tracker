@@ -42,7 +42,7 @@ const DashboardSidebarItems = [
     },
     {
         name: "Settings",
-        route: "/settings",
+        route: "#",
         icon: <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-6 w-6 mr-4 text-gray-400 hover:text-pink-600 transition duration-200"
