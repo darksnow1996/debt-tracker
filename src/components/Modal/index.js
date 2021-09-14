@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {default as TailwindModal} from "@material-tailwind/react/Modal";
+import {default as TailwindModal} from "./TailwindModal"
 import ModalHeader from "@material-tailwind/react/ModalHeader";
 import ModalBody from "@material-tailwind/react/ModalBody";
 import ModalFooter from "@material-tailwind/react/ModalFooter";

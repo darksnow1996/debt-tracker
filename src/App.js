@@ -2,10 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import Login from './views/Auth/Login';
 import Register from './views/Auth/Register';
-import DashBoard from './views/Dashboard';
-import AddLoanee from './views/Loanees/AddLoanee';
+
 import DashboardPage from './views/DashboardPage';
-import LoanRecords from './views/Loanees/LoanRecords';
+
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
 import Loanees from './views/Loanees';
 import Loans from './views/Loans';
