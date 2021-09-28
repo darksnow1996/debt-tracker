@@ -36,7 +36,7 @@ const Login = (props) => {
             
             <Button
             type="submit"
-             onClick={submitForm} title="Login In"></Button>
+             onClick={submitForm} title="Login"></Button>
 
             </form>
       </AuthTemplate>

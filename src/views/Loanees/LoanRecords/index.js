@@ -1,7 +1,7 @@
 import DashBoard from "../../Dashboard"
 import Table, { AvatarCell, SelectColumnFilter, StatusPill } from "../../../components/Table"
 import React  from "react"
-import { Button, ButtonLink } from "../../../components/Button"
+import { Button, ButtonLink, ButtonSm } from "../../../components/Button"
 import Modal from "../../../components/Modal"
 import { useState } from "react"
 import Input from "../../../components/Input"
@@ -11,7 +11,7 @@ import Input from "../../../components/Input"
 const getData = () => {
     const data = [
       {
-        name: 'Jane Cooper',
+        name: 'Jane Coopppppper',
         email: 'jane.cooper@example.com',
         title: 'Regional Paradigm Technician',
         department: 'Optimization',
@@ -87,9 +87,7 @@ const LoanRecords = (props) => {
         {
           Header: "Loanee",
           accessor: 'name',
-          Cell: AvatarCell,
-          imgAccessor: "imgUrl",
-          emailAccessor: "email",
+         
         },
         {
           Header: "Email",
@@ -143,10 +141,10 @@ const LoanRecords = (props) => {
             <section class="my-auto mt-10 p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
             <div className="w-full flex flex-row justify-between">
             <h5 class="text-gray-900 text-2xl font-bold mt-0 mb-0">Loanees</h5>
-            <div className="w-1/12">
-            <Button onClick={()=> {
+            <div className="w-1/12 ">
+            <ButtonSm onClick={()=> {
                 setShowModal(true)
-            }} title="Create" ></Button>
+            }} title="Create" ></ButtonSm>
             </div>
             </div>
             

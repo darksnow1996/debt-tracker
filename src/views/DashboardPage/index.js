@@ -74,8 +74,8 @@ const DashboardPage = (props) => {
                   clip-rule="evenodd"
                 />
               </svg>}
-        title="Total Loan"
-        value="$682.5"
+        title="Total paid back"
+        value="$342.5"
 
           ></DashboardStatisticCard>
         

@@ -5,7 +5,7 @@ import Label from "../../../components/Label";
 function AuthTemplate(props) {
     return (
       <section className="text-gray-600 body-font lg:w-9/12 z-10">
-        <div className="container w-10/12 px-5 py-24 mx-auto flex flex-wrap items-center">
+        <div className="container w-full px-24 py-24 mx-auto flex flex-row flex-wrap items-center">
           <div className="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
             <h1 className="title-font font-bold text-5xl text-white">
               Welcome to pay<span className="text-pink-600">UP</span>
@@ -14,7 +14,7 @@ function AuthTemplate(props) {
               {props.subtitle}
             </p>
           </div>
-          <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 shadow-lg">
+          <div className="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto mt-10 md:mt-0 shadow-lg">
             <h2 className="text-gray-900 text-lg font-medium title-font mb-5">
               {props.formtitle}
             </h2>
