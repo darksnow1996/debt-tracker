@@ -81,7 +81,7 @@ const LoanRecords = (props) => {
 
     const columns = React.useMemo(() => [
         {
-          Header: "Loanee",
+          Header: "Debtor",
           accessor: 'name',
           Cell: AvatarCell,
           imgAccessor: "imgUrl",
@@ -121,8 +121,8 @@ const LoanRecords = (props) => {
         <Modal title="Add Loan" showModal={showModal} setShowModal={setShowModal}>
             <form className="grid grid-cols-4 gap-4">
                 <div className="col-span-4">
-                <Label title="Choose Loanee"/>
-                <Input type="text" placeholder="Enter Loanee Name"/>
+                <Label title="Choose Debtor"/>
+                <Input type="text" placeholder="Enter Debtor Name"/>
                 </div>
                 <div className="col-span-4">
                 <Label title="Loan amount"/>

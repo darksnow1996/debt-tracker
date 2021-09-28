@@ -8,7 +8,7 @@ const AddLoan = (props) => {
         <DashBoard>
             <section class="my-auto mt-10 p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
           <h2 class="text-lg font-semibold text-gray-700 capitalize dark:text-white">
-           Add Loanee
+           Add Debtor
           </h2>
 
           <form>
