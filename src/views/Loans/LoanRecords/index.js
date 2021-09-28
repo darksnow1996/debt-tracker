@@ -134,8 +134,11 @@ const LoanRecords = (props) => {
                 <Input type="date" placeholder=""/>
 
                 </div>
-                <div className="col-start-4">
-                    <Button title="Save" type="submit"/>
+                <div className="col-span-4 ">
+                    <ButtonSm title="Save" type="submit"/>
+                    <ButtonSm onClick={()=> {
+                setShowModal(false)
+            }} title="Close" ></ButtonSm>
                 </div>
             </form>
         </Modal>
