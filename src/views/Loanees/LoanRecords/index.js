@@ -140,7 +140,7 @@ const LoanRecords = (props) => {
             
             <section class="my-auto mt-10 p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800">
             <div className="w-full flex flex-row justify-between">
-            <h5 class="text-gray-900 text-2xl font-bold mt-0 mb-0">Loanees</h5>
+            <h5 class="text-gray-900 text-2xl font-bold mt-0 mb-0">Debtors</h5>
             <div className="w-1/12 ">
             <ButtonSm onClick={()=> {
                 setShowModal(true)
