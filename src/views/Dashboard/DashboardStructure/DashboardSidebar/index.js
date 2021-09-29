@@ -5,8 +5,7 @@ import DashboardSidebarItem from "./DashboardSidebarItem";
 
 
 
-function DashboardSidebar({defaultActive}) {
-	const [activeIndex, setActiveIndex] = useState(defaultActive || 1);
+function DashboardSidebar() {
   return (
     <div className="py-12 px-10 w-2/12">
       <div className="flex space-2 items-center border-b-2 pb-4">
@@ -32,7 +31,6 @@ function DashboardSidebar({defaultActive}) {
                       name={item.name}
                       icon={item.icon}
                       route={item.route}
-					  active={index === activeIndex}
                   />
               })
               }
@@ -42,7 +40,7 @@ function DashboardSidebar({defaultActive}) {
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-gray-400 hover:text-pink-600 transition duration-200 ${props => props.active ? #b15b00 : "
+            className="h-6 w-6 text-gray-400 hover:text-pink-600 transition duration-200"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
