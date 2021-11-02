@@ -45,7 +45,6 @@ function DashboardSidebar({defaultActive}) {
                       name={item.name}
                       icon={item.icon}
                       route={item.route}
-					  active={index === activeIndex}
                   />
               })
               }
@@ -55,7 +54,7 @@ function DashboardSidebar({defaultActive}) {
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-gray-400 hover:text-pink-600 transition duration-200 ${props => props.active ? #b15b00 : "
+            className="h-6 w-6 text-gray-400 hover:text-pink-600 transition duration-200"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
