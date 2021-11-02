@@ -2,10 +2,23 @@ import { Link } from "react-router-dom";
 import React, { useState } from "react";
 import DashboardSidebarItems from "./DashboardSidebarItems";
 import DashboardSidebarItem from "./DashboardSidebarItem";
+import authService from '../../../../data/authentication/index'
+import {useHistory} from 'react-router-dom'
+import {useDispatch} from 'react-redux'
+import {logoutUser} from '../../../../redux/actions'
 
 
 
 function DashboardSidebar({defaultActive}) {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const handleLogout = ()=> {
+   
+   dispatch(logoutUser())
+
+  // history.replace("/login")
+
+  }
 	const [activeIndex, setActiveIndex] = useState(defaultActive || 1);
   return (
     <div className="py-12 px-10 w-2/12">
@@ -55,12 +68,13 @@ function DashboardSidebar({defaultActive}) {
             />
           </svg>
         </div>
-        <Link
-          to="/login"
-          className="block font-semibold text-gray-500 hover:text-pink-600 transition duration-200"
+        <div
+          to="#"
+          onClick={()=> handleLogout()}
+          className="block font-semibold cursor-pointer text-gray-500 hover:text-pink-600 transition duration-200"
         >
           Logout
-        </Link>
+        </div>
       </div>
     </div>
   );

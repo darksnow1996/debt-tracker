@@ -5,18 +5,69 @@ import Register from './views/Auth/Register';
 
 import DashboardPage from './views/DashboardPage';
 
-import { Switch, BrowserRouter, Route } from 'react-router-dom';
+import { Switch, Router, Route,Redirect } from 'react-router-dom';
+import {createBrowserHistory} from 'history';
 import Loanees from './views/Loanees';
 import Loans from './views/Loans';
 import "@material-tailwind/react/tailwind.css";
+import { ToastProvider } from 'react-toast-notifications';
+import PublicRoute from './router/PublicRoute';
+import PrivateRoute from './router/PrivateRoute';
+import ProtectedRoutes from './router/ProtectedRoutes';
 
-function App() {
+import authService from './data/authentication/index'
+import {useEffect, useState} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import routes from './router/routes';
+
+
+const history = createBrowserHistory();
+ function App() {
+   const isAuthenticated = useSelector((state)=>state.auth.isAuthenticated)
+   //const state = useSelector((state)=>state.auth)
+   //console.log(state)
+  //const [isAuthenticated, setIsAuthenticated] =useState(isAuthenticatedState)
 
   
   return (
- <BrowserRouter>
-   <Switch>
-     <Route path="/"  exact>
+    
+<ToastProvider autoDismiss={true}>
+<Router history={history}>
+   <Switch >
+   <Redirect exact from="/" to="/login" />
+   <PublicRoute
+            path="/login"
+            isAuthenticated={isAuthenticated}
+          >
+            <Login />
+          </PublicRoute>
+          <PublicRoute
+            path="/register"
+            isAuthenticated={isAuthenticated}
+          >
+            <Register />
+          </PublicRoute>
+          {routes.map(({ component: Component, path, exact }) => (
+        <PrivateRoute
+          path={`/${path}`}
+          key={path}
+          isAuthenticated={isAuthenticated}
+          exact={exact}          
+          
+        >
+          <Component />
+        </PrivateRoute>
+      ))}
+          {/* <PrivateRoute
+            path="/"
+            isAuthenticated={isAuthenticated}
+          >
+            <ProtectedRoutes/>
+          </PrivateRoute> */}
+          {/* <Route path="*">
+            <NoFoundComponent />
+          </Route> */}
+     {/* <Route path="/"  exact>
        <Login></Login>
      </Route>
      <Route path="/login"  exact>
@@ -33,9 +84,12 @@ function App() {
      </Route>
      <Route path="/loans">
     <Loans/>
-     </Route>
+     </Route> */}
    </Switch>
- </BrowserRouter>
+ </Router>
+</ToastProvider>
+
+
   );
 }
 

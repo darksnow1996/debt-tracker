@@ -7,15 +7,14 @@ import { DashboardStatisticCard } from "./DashboardStructure";
 
 
 
-const DashBoard = (props) => {
+const DashBoard = ({children , ...rest}) => {
   return (
     <div className="min-h-screen flex">
       <DashboardSidebar></DashboardSidebar>
       <DashboardRightSide
-      header={props.header}
+      {...rest}
       >
-      {props.children}
-      
+      {children}
       </DashboardRightSide>
     </div>
   );

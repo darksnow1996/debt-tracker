@@ -3,89 +3,77 @@ import Table, { AvatarCell, SelectColumnFilter, StatusPill } from "../../../comp
 import React  from "react"
 import { Button, ButtonLink, ButtonSm } from "../../../components/Button"
 import Modal from "../../../components/Modal"
-import { useState } from "react"
+import { useState, useEffect} from "react"
 import Input from "../../../components/Input"
 import Label from "../../../components/Label"
+import {useForm,FormProvider} from "react-hook-form"
+import debtorService from "../../../data/debtors"
+import loanService from "../../../data/loans"
+import {useToasts} from 'react-toast-notifications'
+import Select from "../../../components/Select"
 
 
 
-const getData = () => {
-    const data = [
-      {
-        name: 'Jane Cooper',
-        email: 'jane.cooper@example.com',
-        amount: '$500.90',
-        paid: '$500.90',
-        department: 'Optimization',
-        tel: "+12738393033933839",
-        status: 'Paid',
-        role: 'Admin',
-        age: 27,
-        imgUrl: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-      },
-      {
-        name: 'Cody Fisher',
-        email: 'cody.fisher@example.com',
-        amount: '$310',
-        paid: '$200',
-        department: 'Intranet',
-        tel: "+12738393033933839",
-        status: 'Partly Paid',
-        role: 'Owner',
-        age: 43,
-        imgUrl: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-      },
-      {
-        name: 'Esther Howard',
-        email: 'esther.howard@example.com',
-        amount: '$204',
-        paid: '$204',
-        tel: "+12738393033933839",
-        department: 'Directives',
-        status: 'Paid',
-        role: 'Member',
-        age: 32,
-        imgUrl: 'https://images.unsplash.com/photo-1520813792240-56fc4a3765a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-      },
-      {
-        name: 'Jenny Wilson',
-        email: 'jenny.wilson@example.com',
-        amount: '$350',
-        paid: '$0',
-        tel: "+12738393033933839",
-        department: 'Program',
-        status: 'Unpaid',
-        role: 'Member',
-        age: 29,
-        imgUrl: 'https://images.unsplash.com/photo-1498551172505-8ee7ad69f235?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-      },
-      {
-        name: 'Kristin Watson',
-        email: 'kristin.watson@example.com',
-        amount: '$50',
-        paid: '$0',
-        tel: "+12738393033933839",
-        department: 'Mobility',
-        status: 'Unpaid',
-        role: 'Admin',
-        age: 36,
-        imgUrl: 'https://images.unsplash.com/photo-1532417344469-368f9ae6d187?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
-      },
-      
-    ]
-    return [...data, ...data, ...data]
-  }
+
 
 
 const LoanRecords = (props) => {
 
+  const {register, handleSubmit,reset, watch, formState: { errors }} = useForm();
+  const {addToast} = useToasts()
+  const[loanData, setLoanData] = useState([]);
+  const [debtorData, setDebtorData] = useState([]);
+  const [showModal, setShowModal] = useState(false)
+  const [formisLoading, setFormIsLoading] = useState(false)
+  const [refreshKey, setRefreshKey] = useState(0)
+
+
+
+  useEffect(()=>{
+    let getDebtors = async()=>{
+      try{
+       let {data} = await debtorService.getDebtors()      
+     // console.log(data)
+      data = data.map((debtor)=> {
+        return {
+          id: debtor.id,
+          value: debtor.name
+        }
+      })
+       setDebtorData(data)  
+      }
+      catch(error){
+
+      }
+    
+    }  
+    getDebtors()  
+  },[])
+
+
+  useEffect(()=>{
+    let getLoans = async()=>{
+      try{
+       let {data} = await loanService.getLoans()      
+     // console.log(data)
+       setLoanData(data)  
+      }
+      catch(error){
+
+      }
+    
+    }  
+    getLoans()  
+  },[refreshKey])
+
+
     const columns = React.useMemo(() => [
         {
           Header: "Debtor",
-          accessor: 'name',
+          accessor: 'loanee.name',
           Cell: AvatarCell,
           imgAccessor: "imgUrl",
-          emailAccessor: "email",
+          emailAccessor: 'loanee.email',
         },
         {
           Header: "Amount Owed",
@@ -93,7 +81,7 @@ const LoanRecords = (props) => {
         },
         {
           Header: "Amount Paid",
-          accessor: 'paid',
+          accessor: 'total_amount_paid',
         },
         {
           Header: "Status",
@@ -110,33 +98,94 @@ const LoanRecords = (props) => {
           },
       ], [])
     
-      const data = React.useMemo(() => getData(), [])
+    //  const data = React.useMemo(() => getData(), [])
 
-   const [showModal, setShowModal] = useState(false)
+  
+   const handleFormSubmit = async(data)=> {
+    try{
+      setFormIsLoading(true)
+      let loan = await loanService.createLoan(data)
+      setFormIsLoading(false)
+      addToast(loan.message, {appearance:"success"})     
+      setRefreshKey(oldKey=> oldKey + 1) 
+      reset() 
+    }
+    catch(error){
+     addToast(error.message, {appearance:"error"})  
+     setFormIsLoading(false)
+    }
+
+  }
+
+  const onFormError = (error)=> {
+   addToast("Validation error", {appearance:"error"})  
+ }
+
 
     
     return (
       
         <DashBoard>
         <Modal title="Add Loan" showModal={showModal} setShowModal={setShowModal}>
-            <form className="grid grid-cols-4 gap-4">
+            <form className="grid grid-cols-4 gap-4" onSubmit={handleSubmit(handleFormSubmit,onFormError)}>
                 <div className="col-span-4">
                 <Label title="Choose Debtor"/>
-                <Input type="text" placeholder="Enter Debtor Name"/>
+                <Select 
+                register={register} 
+                rules={{
+                required: true,
+
+              }} 
+                options={debtorData} 
+                name="loanee_id" 
+               
+                placeholder="Enter Debtor Name"/>
                 </div>
                 <div className="col-span-4">
                 <Label title="Loan amount"/>
-                <Input type="number" placeholder=""/>
+                <Input 
+                 rules={{
+                required: true,
+
+              }} 
+                type="number" 
+                register={register} 
+                
+                label="amount" 
+                placeholder=""/>
 
                 </div>
                 <div className="col-span-4">
-                <Label title="Loan period"/>
-                <Input type="date" placeholder=""/>
+                <Label title="Date Collected"/>
+                <Input 
+                 rules={{
+                required: true,
+
+              }} 
+                register={register} 
+                
+                label="date_collected" 
+                type="date" 
+                placeholder=""/>
+                </div>
+                <div className="col-span-4">
+                <Label title="Due Date"/>
+               <Input 
+                register={register} 
+                rules={{
+                required: true,
+
+              }}                
+                 
+                label="payback_date" 
+                type="date" 
+                placeholder=""/>
 
                 </div>
                 <div className="col-span-4 ">
-                    <ButtonSm title="Save" type="submit"/>
-                    <ButtonSm onClick={()=> {
+                    <ButtonSm disabled={formisLoading ? 'disabled': ''}
+                    title={formisLoading ? "...." : "save"} type="submit"/>
+                    <ButtonSm type="button" onClick={()=> {
                 setShowModal(false)
             }} title="Close" ></ButtonSm>
                 </div>
@@ -154,7 +203,7 @@ const LoanRecords = (props) => {
             </div>
             
             
-            <Table columns={columns} data={data} />
+            <Table columns={columns} data={loanData} />
                  </section>
             
                 
