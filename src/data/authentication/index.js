@@ -1,4 +1,7 @@
+
 import api from "../api"
+import setTokenConfig from "../token";
+
 
  class authService{
  
@@ -63,11 +66,21 @@ async isLoggedIn(){
     }
 }
 
-  getCurrentUser(){
-    const user = JSON.parse(localStorage.getItem('user'));
-    return user? JSON.parse(localStorage.getItem('user')): {token:""};
+async changeDetails(payload){
+  try{
+      let response = await api.post('settings/profile',payload,setTokenConfig());
+
+      return response.data
+  }
+  catch(error){
+      throw new Error(error.message)
+  }
+ 
+
 }
 
+
+  
  logout() {
     localStorage.removeItem("user");
   }

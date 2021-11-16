@@ -3,15 +3,18 @@ import React, { useState } from "react";
 import DashboardSidebarItems from "./DashboardSidebarItems";
 import DashboardSidebarItem from "./DashboardSidebarItem";
 import authService from '../../../../data/authentication/index'
-import {useHistory} from 'react-router-dom'
+import {useHistory,useLocation} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import {logoutUser} from '../../../../redux/actions'
-
 
 
 function DashboardSidebar({defaultActive}) {
   const history = useHistory();
   const dispatch = useDispatch();
+  const {pathname} = useLocation();
+
+
+ // console.log(pathname);
   const handleLogout = ()=> {
    
    dispatch(logoutUser())
@@ -41,7 +44,8 @@ function DashboardSidebar({defaultActive}) {
               DashboardSidebarItems.map((item, index) => {
 
                  return  <DashboardSidebarItem
-                      key={index}                 
+                      key={index}  
+                      active={pathname === item.route ? true:false}               
                       name={item.name}
                       icon={item.icon}
                       route={item.route}
@@ -54,7 +58,7 @@ function DashboardSidebar({defaultActive}) {
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6 text-gray-400 hover:text-pink-600 transition duration-200"
+            className="h-6 w-6 text-gray-400  hover:text-pink-600 transition duration-200"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

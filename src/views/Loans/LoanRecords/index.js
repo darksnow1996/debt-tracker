@@ -11,6 +11,7 @@ import debtorService from "../../../data/debtors"
 import loanService from "../../../data/loans"
 import {useToasts} from 'react-toast-notifications'
 import Select from "../../../components/Select"
+import numberFormatter from "../../../helper/numberformatter"
 
 
 
@@ -40,6 +41,7 @@ const LoanRecords = (props) => {
           value: debtor.name
         }
       })
+     // console.log(data)
        setDebtorData(data)  
       }
       catch(error){
@@ -71,17 +73,19 @@ const LoanRecords = (props) => {
         {
           Header: "Debtor",
           accessor: 'loanee.name',
-          Cell: AvatarCell,
-          imgAccessor: "imgUrl",
-          emailAccessor: 'loanee.email',
+          Cell : ({value})=> {
+            return value ? value.replace(/\S+/g, value => value.charAt(0).toUpperCase() + value.substr(1).toLowerCase()): value},
+         
         },
         {
           Header: "Amount Owed",
           accessor: 'amount',
+          Cell: ({value})=> numberFormatter(value)
         },
         {
           Header: "Amount Paid",
           accessor: 'total_amount_paid',
+          Cell: ({value})=> numberFormatter(value)
         },
         {
           Header: "Status",
@@ -103,6 +107,7 @@ const LoanRecords = (props) => {
   
    const handleFormSubmit = async(data)=> {
     try{
+      console.log(data)
       setFormIsLoading(true)
       let loan = await loanService.createLoan(data)
       setFormIsLoading(false)

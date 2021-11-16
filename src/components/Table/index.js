@@ -142,7 +142,7 @@ function Table({ columns, data }) {
   // Render the UI for your table
   return (
     <>
-      <div className="sm:flex sm:gap-x-2">
+      <div className="sm:flex sm:gap-x-2 cap">
         <GlobalFilter
           preGlobalFilteredRows={preGlobalFilteredRows}
           globalFilter={state.globalFilter}

@@ -15,8 +15,7 @@ import PublicRoute from './router/PublicRoute';
 import PrivateRoute from './router/PrivateRoute';
 import ProtectedRoutes from './router/ProtectedRoutes';
 
-import authService from './data/authentication/index'
-import {useEffect, useState} from 'react'
+
 import {useDispatch, useSelector} from 'react-redux'
 import routes from './router/routes';
 

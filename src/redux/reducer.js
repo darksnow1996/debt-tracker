@@ -33,6 +33,9 @@ const authReducer = (state=initialState, action) => {
     else if(action.type === actions.LOGIN_SENT){
         return merge(state, {loading:true})
     }
+    else if(action.type === actions.USER_PROFILE_UPDATED){
+        return merge(state, {user:{...action.payload}})
+    }
 
     return state;
 }

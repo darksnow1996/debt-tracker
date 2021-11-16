@@ -4,6 +4,7 @@ import Input from "../../../../components/Input";
 import Label from "../../../../components/Label";
 import authService from '../../../../data/authentication/index'
 import {useSelector} from 'react-redux'
+import { useLocation } from "react-router-dom";
 
 function DashboardHeader(props) {
   return (
@@ -18,7 +19,10 @@ function DashboardHeader(props) {
 
 function DashboardRightSide(props) {
 
+  
+
   const username =  useSelector(state => state.auth.user.firstname)
+  const {pathname} = useLocation();
 
   
   
@@ -30,7 +34,7 @@ function DashboardRightSide(props) {
       {
           props.header 
           ? props.header : (<div>
-          <h4 className="text-sm font-bold text-pink-600">Hi {username},</h4>
+          <h4 className="text-sm font-bold text-pink-600 capitalize">Hi {username},</h4>
           <h1 className="text-4xl font-bold text-pink-900 mt-">
             Welcome to payUP!
           </h1>
@@ -38,6 +42,15 @@ function DashboardRightSide(props) {
       }
         
       </DashboardHeader>
+      <nav className=" p-3 rounded flex flex-row justify-end  w-full m-4">
+  <ol className="list-reset flex text-grey-dark">
+    <li><a href="#" className=" text-pink-500 font-bold">Home</a></li>
+    <li><span className="mx-2 text-gray-600"> / </span></li>
+    
+   
+    <li className="capitalize">{pathname.replace("/","")}</li>
+  </ol>
+</nav>
       <div>
       {props.children}
        </div>

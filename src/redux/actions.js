@@ -1,16 +1,18 @@
 import authService from "../data/authentication/index"
+ //import settingsService from "../data/settings/index"
 
-const {login,register,logout} = authService;
+//const {login,register} = authService;
 // action types
+export const USER_LOGGED_IN = "USER_LOGGED_IN"
 export const REGISTERED_USER = "REGISTERED_USER"
 export const UPDATED_USER = "UPDATED_USER"
-export const USER_LOGGED_IN = "USER_LOGGED_IN"
 export const USER_LOGGED_OUT = "USER_LOGGED_OUT"
 export const USER_LOG_IN_REJECTED = "USER_LOG_IN_REJECTED"
 export const USER_REGISTERED ="USER_REGISTERED"
 export const USER_REGISTRATION_REJECTED = "USER_REGISTRATION_REJECTED"
 export const USER_SESSION_EXPIRED = "USER_SESSION_EXPIRED"
 export const LOGIN_SENT = "LOGIN_SENT"
+export const USER_PROFILE_UPDATED = "USER_PROFILE_UPDATED"
 
 
 export const loginUser = (payload) => async(dispatch) => {
@@ -18,7 +20,7 @@ export const loginUser = (payload) => async(dispatch) => {
         type:LOGIN_SENT,
     })    
     try{
-        const data = await login({email:payload.email, password:payload.password})
+        const data = await authService.login({email:payload.email, password:payload.password})
        // console.log(data);
         dispatch({
             type: USER_LOGGED_IN,
@@ -35,6 +37,25 @@ export const loginUser = (payload) => async(dispatch) => {
         throw new Error(error.message)
     }
     
+}
+
+export const updateProfile = (payload)=>async(dispatch)=>{
+    try{
+        
+        const {data} = await authService.changeDetails(payload)
+        console.log(data)
+
+        dispatch( {
+            type: USER_PROFILE_UPDATED,
+            payload:data
+        })
+    
+        
+    }
+    catch(error){
+         throw new Error(error.message)
+    }
+
 }
 
 export const logoutUser = ()=> {

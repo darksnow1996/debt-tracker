@@ -8,8 +8,7 @@ import Input from "../../../components/Input"
 import {useForm,FormProvider} from "react-hook-form"
 import debtorService from "../../../data/debtors"
 import {useToasts} from 'react-toast-notifications'
-
-
+import formatPhoneNumber from "../../../helper/numberformatter/telformatter"
 
 
 
@@ -17,6 +16,7 @@ const LoanRecords = (props) => {
   const {register, handleSubmit,reset, watch, formState: { errors }} = useForm();
   const {addToast} = useToasts()
   const[debtorData, setDebtorData] = useState([]);
+  const [refreshKey, setRefreshKey] = useState(0)
 
 
   useEffect(()=>{
@@ -32,21 +32,25 @@ const LoanRecords = (props) => {
     
     }  
     getDebtors()  
-  },[])
+  },[refreshKey])
 
     const columns = React.useMemo(() => [
         {
           Header: "Debtor Name",
           accessor: 'name',
+          Cell : ({value})=> {
+            return value ? value.replace(/\S+/g, value => value.charAt(0).toUpperCase() + value.substr(1).toLowerCase()): value;}
          
         },
         {
           Header: "Email",
           accessor: 'email',
+          Cell : ({value})=> value
         },
         {
           Header: "Tel",
           accessor: 'tel',
+          Cell : ({value})=> formatPhoneNumber(value)
          
         },
         
@@ -73,6 +77,7 @@ const LoanRecords = (props) => {
        let debtor = await debtorService.createDebtor(data)
        setFormIsLoading(false)
        addToast(debtor.message, {appearance:"success"})      
+       setRefreshKey(oldKey=> oldKey + 1) 
        reset() 
      }
      catch(error){
