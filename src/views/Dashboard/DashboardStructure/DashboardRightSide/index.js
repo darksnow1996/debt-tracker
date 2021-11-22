@@ -29,7 +29,7 @@ function DashboardRightSide(props) {
  
  // console.log(user);
   return (
-    <div className="bg-pink-50 flex-grow py-12 px-10">
+    <div className="bg-pink-50 flex flex-col flex-1 overflow-auto md:ml-18 lg:ml-0 md:z-10 mb-16 md:mb-0 p-10">
       <DashboardHeader>
       {
           props.header 

@@ -24,7 +24,7 @@ function DashboardSidebar({defaultActive}) {
   }
 	const [activeIndex, setActiveIndex] = useState(defaultActive || 1);
   return (
-    <div className="py-12 px-10 w-2/12">
+    <div className="py-12 px-10 w-64">
       <div className="flex space-2 items-center border-b-2 pb-4">
         <div>
          

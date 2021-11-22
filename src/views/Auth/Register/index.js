@@ -46,35 +46,35 @@ const Register = (props) => {
         formSubtitle = {<div>Have an account?...<Link to="/login" className="text-pink-500">Log In</Link></div>}
         >
          <form className="relative" onSubmit={handleSubmit(formSubmit,onFormError)}>
-           <div className="relative mb-4">
+           <div className="relative mb-1">
                 <Label title="First Name"></Label>
                 <Input type="text" register={register}  label="firstname" rules={{
                 required: true,
 
               }}></Input>
               </div>
-              <div className="relative mb-4">
+              <div className="relative mb-1">
                 <Label title="Last Name"></Label>
                 <Input type="text" register={register}  label="lastname" rules={{
                 required: true,
 
               }}></Input>
               </div>
-              <div className="relative mb-4">
+              <div className="relative mb-1">
                 <Label title="Email"></Label>
                 <Input type="email" register={register}  label="email" rules={{
                 required: true,
 
               }}></Input>
               </div>
-              <div className="relative mb-4">
+              <div className="relative mb-1">
                 <Label title="Password"></Label>
                 <Input type="password" register={register}  label="password" rules={{
                 required: true,
 
               }}></Input>
               </div>
-              <div className="relative mb-4">
+              <div className="relative mb-1">
                 <Label title="Confirm password"></Label>
                 <Input type="password" register={register}  label="cpassword" rules={{
                 required: true,
