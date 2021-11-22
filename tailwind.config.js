@@ -1,5 +1,5 @@
 module.exports = {
-  mode:'',
+  mode:'jit',
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -7,8 +7,8 @@ module.exports = {
   },
   variants: {
     extend: {
-      // opacity: ['disabled'],
-      // cursor:['disabled'], 
+      opacity: ['disabled'],
+      cursor:['disabled'], 
      
     },
   },
