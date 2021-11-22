@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 
 function DashboardSidebarItem(props) {
     return (
-      <li className={"p-2 " + `${props.active ? 'text-white rounded-md bg-pink-500':'hover:bg-pink-500 rounded-md  hover:text-white text-gray-500'}`}>
+      <li className={"flex-1 md:flex-none md:p-2 " + `${props.active ? 'md:text-white md:rounded-md md:bg-pink-500':'md:hover:bg-pink-500 md:rounded-md  md:hover:text-white md:text-gray-500'}`}>
         <Link
           to={props.route}
-          className="flex items-center text-sm font-semicolon font-semibold  transition duration-200"
+          className="flex flex-col md:flex-row items-center md:text-sm md:font-semicolon md:font-semibold  transition duration-200"
         >
         {props.icon}
           
@@ -17,3 +17,6 @@ function DashboardSidebarItem(props) {
   }
 
   export default DashboardSidebarItem
+
+
+  

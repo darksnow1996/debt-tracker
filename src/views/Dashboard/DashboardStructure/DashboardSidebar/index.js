@@ -24,12 +24,12 @@ function DashboardSidebar({defaultActive}) {
   }
 	const [activeIndex, setActiveIndex] = useState(defaultActive || 1);
   return (
-    <div className="py-12 px-10 w-64">
-      <div className="flex space-2 items-center border-b-2 pb-4">
+    <div className="absolute overflow-hidden bottom-0 md:relative w-screen flex md:flex-col md:min-h-screen md:h-full md:py-12 md:px-10 md:w-64">
+      <div className="hidden md:flex md:space-2 md:items-center md:border-b-2 md:pb-4">
         <div>
          
         </div>
-        <div className="ml-3">
+        <div className="md:ml-3 hidden md:block">
           <h1 className="text-3xl font-bold text-pink-600">payUP</h1>
           <p className="text-center text-sm text-pink-600 mt-1 font-serif">
             Track your friendly loans
@@ -37,8 +37,8 @@ function DashboardSidebar({defaultActive}) {
         </div>
       </div>
 
-      <div className="mt-8">
-        <ul className="space-y-5">
+      <div className="md:mt-8">
+        <ul className="flex md:flex-col bg-pink-300 md:bg-transparent w-screen md:w-auto flex-1 justify-between md:justify-start py-2 md:py-0 shadow-dark md:shadow-none md:space-y-5">
          
           {
               DashboardSidebarItems.map((item, index) => {
@@ -54,7 +54,7 @@ function DashboardSidebar({defaultActive}) {
               }
         </ul>
       </div>
-      <div className="flex mt-20 space-x-4 items-center">
+      <div className="hidden md:flex mt-20 space-x-4 items-center">
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
