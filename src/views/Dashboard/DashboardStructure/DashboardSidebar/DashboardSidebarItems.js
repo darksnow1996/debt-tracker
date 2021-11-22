@@ -4,7 +4,7 @@ const DashboardSidebarItems = [
       route: "/dashboard",
       icon:  <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-8 w-8 mr-4   transition duration-200"
+      className="h-8 w-8 mr-4 text-gray-400  transition duration-200"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -40,7 +40,7 @@ const DashboardSidebarItems = [
         route: "/settings",
         icon: <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-6 w-6 mr-4 text-gray-400 hover:text-pink-600 transition duration-200"
+        className="h-8 w-8 mr-4 text-gray-400 hover:text-pink-600 transition duration-200"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
